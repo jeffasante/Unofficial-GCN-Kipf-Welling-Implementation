@@ -52,21 +52,27 @@ class GraphConvolution(nn.Module):
 
         return x + self.bias
 
-
 class GCN(nn.Module):
     """Graph Convolutional Network."""
-    def __init__(self, in_features, hidden_features, out_features, num_layers):
+    def __init__(self, in_features, hidden_features, out_features, num_layers, dropout=0.5):
         super(GCN, self).__init__()
         self.convs = nn.ModuleList([GraphConvolution(in_features, hidden_features)] +
                                     [GraphConvolution(hidden_features, hidden_features) for _ in range(num_layers-1)])
         self.fc = nn.Linear(hidden_features, out_features)
+        self.dropout = dropout
 
     def forward(self, x, adj):
-        for conv in self.convs:
+        # Apply first convolution, ReLU, and dropout
+        x = self.convs[0](x, adj)
+        x = F.relu(x)
+        x = F.dropout(x, training=self.training, p=self.dropout)
+
+        # Apply remaining convolutions
+        for conv in self.convs[1:]:
             x = conv(x, adj)
-       
-        # Final layer
+
         return F.log_softmax(x, dim=1)
+
 
 def prepare_data(in_features, num_nodes, num_classes, verbose=False):
     '''Dummy data.'''
@@ -135,7 +141,7 @@ if __name__ == '__main__':
     best_val_acc = 0
     best_model = None
 
-    epochs = 10
+    epochs = 100
     for epoch in range(epochs):
         model.train()
         optimizer.zero_grad()
