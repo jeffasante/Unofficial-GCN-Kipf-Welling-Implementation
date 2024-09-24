@@ -16,7 +16,13 @@ $ pip install torch einops
 
 ## Usage
 
-Here's how you can test the GCN model using dummy data:
+You can run the `gnn.py` script directly to test the GCN model using dummy data:
+
+```bash
+$ python gnn.py
+```
+
+Or, you can import and use the model in your own script:
 
 ```python
 import torch
