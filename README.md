@@ -2,6 +2,17 @@
 
 This is an unofficial PyTorch implementation of the Graph Convolutional Network (GCN) from the paper ["Semi-Supervised Classification with Graph Convolutional Networks"](https://arxiv.org/abs/1609.02907) by Thomas Kipf and Max Welling. This implementation leverages the `einops` library for efficient and flexible tensor operations.
 
+## Key elements include:
+
+- Model Architecture: A two-layer GCN using a form of convolution on graphs, with ReLU activations.
+
+- Training: The model is trained using cross-entropy loss, optimized via gradient descent (Adam optimizer), with dropout for regularization.
+
+- Input/Output: Node feature matrix as input, predicted labels for nodes as output.
+
+- Metrics: Node classification accuracy.
+
+
 ## Features
 - Graph Convolution using adjacency normalization and self-loops.
 - Efficient tensor reshaping and summing using `einops`.
@@ -51,6 +62,17 @@ print(f"Train Accuracy: {acc_train:.4f}")
 ```
 
 This implementation supports multi-layer GCNs and can be adapted for real-world graph data beyond dummy inputs.
+
+
+```
+@article{kipf2016semi,
+  title={Semi-Supervised Classification with Graph Convolutional Networks},
+  author={Kipf, Thomas N and Welling, Max},
+  journal={arXiv preprint arXiv:1609.02907},
+  year={2016}
+}
+```
+
 
 ## License
 
