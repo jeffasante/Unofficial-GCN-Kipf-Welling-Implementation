@@ -64,6 +64,12 @@ print(f"Train Accuracy: {acc_train:.4f}")
 This implementation supports multi-layer GCNs and can be adapted for real-world graph data beyond dummy inputs.
 
 
+## License
+
+This repository is open-sourced under the MIT License.
+
+# Citation
+
 ```
 @article{kipf2016semi,
   title={Semi-Supervised Classification with Graph Convolutional Networks},
@@ -72,8 +78,3 @@ This implementation supports multi-layer GCNs and can be adapted for real-world 
   year={2016}
 }
 ```
-
-
-## License
-
-This repository is open-sourced under the MIT License.
